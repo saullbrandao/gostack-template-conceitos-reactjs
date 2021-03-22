@@ -12,8 +12,14 @@ const App = () => {
     })
   }, [])
 
-  async function handleAddRepository() {
-    // TODO
+  const handleAddRepository = async () => {
+    const response = await api.post('repositories', {
+      "title": `Test App ${Date.now()}`,
+      "URL": "github.com/saullbrandao/test-app",
+      "techs": ["reactjs"]
+    })
+    const repository = response.data
+    setRepositories([...repositories, repository])
   }
 
   async function handleRemoveRepository(id) {
